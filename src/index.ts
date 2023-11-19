@@ -1,7 +1,6 @@
-import { main } from "./load";
-
+export * from "./tsEnv";
 export  * from './types';
 
+import { runConfig } from "./cli";
 
-export default main;
-
+runConfig();
