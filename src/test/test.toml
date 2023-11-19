@@ -1,0 +1,31 @@
+string = "Hello, World!"
+
+integer = 42
+
+float = 3.14
+
+boolean = true
+
+list = ["item1", "item2", "item3"]
+
+[nested_dict]
+  key1 = "value1"
+  key2 = ["nested_item1", "nested_item2"]
+  [nested_dict.key3]
+    nested_key1 = "nested_value1"
+    nested_key2 = "nested_value2"
+
+multiline_string = """
+This is a multiline
+string in TOML.
+It preserves line breaks.
+"""
+
+date = '2023-11-19'
+
+time = '15:30:00'
+
+datetime = '2023-11-19T15:30:00Z'
+
+[special_characters]
+  value = "!@#$%^&*()_+-=[]{}|;':,.<>/?"

@@ -1,0 +1,51 @@
+person:
+  name: John Doe
+  age: 30
+  gender: male
+  married: true
+
+address:
+  street: 123 Main St
+  city: Anytown
+  state: CA
+  zip: "12345"
+
+contacts:
+  - type: email
+    value: john.doe@example.com
+  - type: phone
+    value: "+1 123-456-7890"
+
+preferences:
+  favorite_colors:
+    - red
+    - green
+    - blue
+  hobbies:
+    - reading
+    - hiking
+    - photography
+
+education:
+  degree: Bachelor of Science
+  major: Computer Science
+  university: University XYZ
+  graduation_year: 2022
+
+projects:
+  - name: Project A
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    status: in_progress
+  - name: Project B
+    description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    status: completed
+
+nested_lists:
+  - - 1
+    - 2
+    - 3
+  - - "a"
+    - "b"
+    - "c"
+
+yaml_version: "1.2"
