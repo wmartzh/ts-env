@@ -1,5 +1,5 @@
 export * from "./tsEnv";
-export  * from './types';
+export * from "./types";
 
 import { runConfig } from "./cli";
 

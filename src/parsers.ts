@@ -1,6 +1,6 @@
-import * as yaml from 'js-yaml';
-import * as fs from 'fs';
-import * as toml from 'toml';
+import * as yaml from "js-yaml";
+import * as fs from "fs";
+import * as toml from "toml";
 
 /**
  * The function `parseYaml` reads a YAML file from the specified path and returns its contents as an.
@@ -10,11 +10,13 @@ import * as toml from 'toml';
  * @returns the parsed YAML file as an object. If the file cannot be parsed, an empty object is
  * returned.
  */
-export function parseYaml(path: string, encoding: BufferEncoding): Record<string, string> {
-  const file:any = yaml.load(fs.readFileSync(path, encoding))
-  return file ?? {}
+export function parseYaml(
+  path: string,
+  encoding: BufferEncoding,
+): Record<string, string> {
+  const file: any = yaml.load(fs.readFileSync(path, encoding));
+  return file ?? {};
 }
-
 
 /**
  * The function `parseJSON` reads a JSON file from the given path and returns its contents as an
@@ -26,11 +28,13 @@ export function parseYaml(path: string, encoding: BufferEncoding): Record<string
  * @returns the parsed JSON object from the file at the specified path. If the file cannot be read or
  * parsed, an empty object is returned.
  */
-export function parseJSON(path: string, encoding: BufferEncoding = 'utf8'): Record<string, string> {
-  const file:any = JSON.parse(fs.readFileSync(path, encoding))
-  return file ?? {}
+export function parseJSON(
+  path: string,
+  encoding: BufferEncoding = "utf8",
+): Record<string, string> {
+  const file: any = JSON.parse(fs.readFileSync(path, encoding));
+  return file ?? {};
 }
-
 
 /**
  * The function `parseToml` reads a TOML file from the given path and returns its contents as a
@@ -42,7 +46,10 @@ export function parseJSON(path: string, encoding: BufferEncoding = 'utf8'): Reco
  * encoding for text files.
  * @returns The function `parseToml` returns a `Record<string, string>`.
  */
-export function parseToml(path: string, encoding: BufferEncoding = 'utf8'): Record<string, string> {
-  const file:any = toml.parse(fs.readFileSync(path, encoding))
-  return file ?? {}
+export function parseToml(
+  path: string,
+  encoding: BufferEncoding = "utf8",
+): Record<string, string> {
+  const file: any = toml.parse(fs.readFileSync(path, encoding));
+  return file ?? {};
 }

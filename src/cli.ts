@@ -1,8 +1,7 @@
 import { tsEnv } from "./tsEnv";
 import { Config } from "./types";
 
-
-const validOpts = ['path', 'encoding', 'type', 'p', 'e', 't'];
+const validOpts = ["path", "encoding", "type", "p", "e", "t"];
 
 const help = `
   Usage: ts-env [options]
@@ -14,10 +13,8 @@ const help = `
     --help, -h      Show help.
 `;
 
-
-
 function parseArgs(args: string[]): any {
-  const options:any = {};
+  const options: any = {};
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
@@ -36,14 +33,11 @@ function parseArgs(args: string[]): any {
   return options;
 }
 
-
-
-
 export function runConfig(): void {
-  const config: Config = {}
+  const config: Config = {};
   const args = parseArgs(process.argv);
 
-  console.log('◉ ▶ file: cli.ts:46 ▶ runConfig ▶ args:', args);
+  console.log("◉ ▶ file: cli.ts:46 ▶ runConfig ▶ args:", args);
 
   for (const arg in args) {
     if (arg === "help" || arg === "h") {
@@ -62,8 +56,5 @@ export function runConfig(): void {
   }
   tsEnv(config);
 
-
-  console.log('◉ ▶ file: cli.ts:64 ▶ runConfig ▶ process.env:', process.env);
-  
+  console.log("◉ ▶ file: cli.ts:64 ▶ runConfig ▶ process.env:", process.env);
 }
-
