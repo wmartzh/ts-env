@@ -17,7 +17,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm pack --dry-run
-      - run: npm publish --tag lts-gallium
+      - run: npm publish --access=public --tag lts-gallium
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           
@@ -32,7 +32,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm pack --dry-run
-      - run: npm publish --tag lts-hydrogen
+      - run: npm publish --access=public --tag lts-hydrogen
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
@@ -47,7 +47,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm pack --dry-run
-      - run: npm publish --tag lts-iron
+      - run: npm publish --access=public --tag lts-iron
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
