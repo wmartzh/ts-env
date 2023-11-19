@@ -1,6 +1,6 @@
 {
   "name": "@wmartzh/ts-env",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "repository": "git@github.com:wmartzh/ts-env.git",
   "author": "Wilian Martinez <wmartinez@q6cyber.com>",
