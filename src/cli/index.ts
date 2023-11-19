@@ -1,5 +1,5 @@
-import { tsEnv } from "./tsEnv";
-import { Config } from "./types";
+import { tsEnv } from "../tsEnv";
+import { Config } from "../types";
 
 const validOpts = ["path", "encoding", "type", "p", "e", "t"];
 
@@ -9,7 +9,7 @@ const help = `
   Options:
     --path, -p      Path to the file to load environment variables from.
     --encoding, -e  Encoding of the file to load environment variables from.
-    --type, -t      Type of the file to load environment variables from.
+    --type, -t      Type of the file to load environment variables from. Valid options are JSON, YAML, and TOML.
     --help, -h      Show help.
 `;
 
@@ -33,11 +33,9 @@ function parseArgs(args: string[]): any {
   return options;
 }
 
-export function runConfig(): void {
+export default function init(): void {
   const config: Config = {};
   const args = parseArgs(process.argv);
-
-  console.log("◉ ▶ file: cli.ts:46 ▶ runConfig ▶ args:", args);
 
   for (const arg in args) {
     if (arg === "help" || arg === "h") {
@@ -56,5 +54,4 @@ export function runConfig(): void {
   }
   tsEnv(config);
 
-  console.log("◉ ▶ file: cli.ts:64 ▶ runConfig ▶ process.env:", process.env);
 }

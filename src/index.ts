@@ -1,6 +1,8 @@
 export * from "./tsEnv";
 export * from "./types";
 
-import { runConfig } from "./cli";
+import cli from "./cli";
 
-runConfig();
+if(require.main === module){
+  cli();
+}

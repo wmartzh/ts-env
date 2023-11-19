@@ -1,4 +1,4 @@
-import { tsEnv } from "../tsEnv";
+import { tsEnv } from "../index";
 
 describe("Main Function", () => {
   it("Should load the environment variables from yaml file", () => {

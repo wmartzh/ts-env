@@ -33,6 +33,9 @@
       "^.+\\.(t|j)s$": "@swc/jest"
     },
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns":[
+      "<rootDir>/cli"
+    ]
   }
 }
