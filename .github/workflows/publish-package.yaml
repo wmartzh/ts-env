@@ -15,8 +15,6 @@ jobs:
           node-version: '16.20.2'
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: npm run build
-      - run: npm pack --dry-run
       - run: npm publish --access=public --tag lts-gallium
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
@@ -30,8 +28,6 @@ jobs:
           node-version: '18.18.2'
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: npm run build
-      - run: npm pack --dry-run
       - run: npm publish --access=public --tag lts-hydrogen
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
@@ -45,8 +41,6 @@ jobs:
           node-version: '20.9.0'
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: npm run build
-      - run: npm pack --dry-run
       - run: npm publish --access=public --tag lts-iron
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
