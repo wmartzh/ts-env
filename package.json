@@ -40,7 +40,7 @@
     ]
   },
   "bin": {
-    "ts-env": "./dist/cli"
+    "ts-env": "./config.js"
   },
   "engines": {
     "node": ">=16.x"
