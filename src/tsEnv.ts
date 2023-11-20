@@ -2,7 +2,7 @@ import { parseJSON, parseToml, parseYaml } from "./parsers";
 import { Config, ConfigType, ParserFunction } from "./types";
 import * as p from "path";
 
-const DEFAULT_PATH = "./env.yml";
+const DEFAULT_PATH = "./.env.yml";
 const DEFAULT_ENCODING: BufferEncoding = "utf8";
 const DEFAULT_TYPE: ConfigType = "YAML";
 

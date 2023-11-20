@@ -1,0 +1,8 @@
+src
+.npmrc
+.nvmrc
+tsconfig.json
+node_modules
+coverage
+.github
+./src/test 
