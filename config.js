@@ -1,5 +1,5 @@
-(function(){
+#!/usr/bin/env node
 
-  require('./dist/cli').init();
+const cli = require('cli');
 
-})();
+cli();
