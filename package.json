@@ -1,6 +1,6 @@
 {
   "name": "@wmartzh/ts-env",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/wmartzh/ts-env",
@@ -39,15 +39,8 @@
       "<rootDir>/cli"
     ]
   },
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
-    },
-    "./dist/index.js": "./dist/index.js",
-    "./dist/index.d.ts": "./dist/index.d.ts",
-    "./cli/index.js": "./dis/cli/index.js",
-    "./package.json": "./package.json"
+  "bin":{
+    "ts-env": "./index.js"
   },
   "engines": {
     "node": ">=16.x"

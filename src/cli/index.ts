@@ -33,7 +33,7 @@ function parseArgs(args: string[]): any {
   return options;
 }
 
-export   function init(): void {
+export function init(): void {
   const config: Config = {};
   const args = parseArgs(process.argv);
 
