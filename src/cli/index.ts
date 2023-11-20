@@ -1,7 +1,6 @@
 import { tsEnv } from "../tsEnv";
 import { Config } from "../types";
 
-const validOpts = ["path", "encoding", "type", "p", "e", "t"];
 
 const help = `
   Usage: ts-env [options]
@@ -43,11 +42,6 @@ export function init(): void {
       process.exit(0);
     }
 
-    if (!validOpts.includes(arg)) {
-      console.error(`Invalid option: ${arg}`);
-      console.log(help);
-      process.exit(1);
-    }
     config.encoding = args.encoding ?? args.e ?? undefined;
     config.path = args.path ?? args.p ?? undefined;
     config.type = args.type ?? args.t ?? undefined;
