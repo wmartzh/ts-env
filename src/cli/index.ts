@@ -1,51 +1,43 @@
-import { tsEnv } from "../tsEnv";
-import { Config } from "../types";
+import { tsEnv } from '../tsEnv';
+import { Config } from '../types';
+import { Command } from 'commander';
 
-
-const help = `
-  Usage: ts-env [options]
-
-  Options:
-    --path, -p      Path to the file to load environment variables from.
-    --encoding, -e  Encoding of the file to load environment variables from.
-    --type, -t      Type of the file to load environment variables from. Valid options are JSON, YAML, and TOML.
-    --help, -h      Show help.
-`;
-
-function parseArgs(args: string[]): any {
-  const options: any = {};
-
-  for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-
-    if (arg.startsWith("--")) {
-      // Long option (e.g., --path=./)
-      const [name, value] = arg.slice(2).split("=");
-      options[name] = value || args[i + 1];
-    } else if (arg.startsWith("-")) {
-      // Short option (e.g., -p ./)
-      const name = arg.slice(1);
-      options[name] = args[i + 1];
-    }
-  }
-
-  return options;
-}
 
 export function init(): void {
-  const config: Config = {};
-  const args = parseArgs(process.argv);
+  const program = new Command();
 
-  for (const arg in args) {
-    if (arg === "help" || arg === "h") {
-      console.log(help);
-      process.exit(0);
-    }
+  program
+    .name('ts-env')
+    .description('A typescript enviroment file management tool')
+    .option(
+      '-p, --path <string>',
+      'Path to the file to load environment variables from.',
+      './.env.yml'
+    )
+    .option(
+      '-e, --encoding <string>',
+      'Encoding of the file to load environment variables from.',
+      'utf8'
+      
+    )
+    .option(
+      '-t, --type <string>',
+      'Type of the file to load environment variables from. Valid options are JSON, YAML, and TOML.',
+      'YAML'
+    );
 
-    config.encoding = args.encoding ?? args.e ?? undefined;
-    config.path = args.path ?? args.p ?? undefined;
-    config.type = args.type ?? args.t ?? undefined;
-  }
+  program.parse(process.argv);
+
+  const opts = program.opts();
+
+
+  const config: Config = {
+    path: opts.path ?? undefined,
+    encoding: opts.encoding ?? undefined,
+    type: opts.type ?? undefined,
+  };
+ 
   tsEnv(config);
-
 }
+
+

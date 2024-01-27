@@ -1,16 +1,10 @@
-import { parseJSON, parseToml, parseYaml } from "./parsers";
+import { FileParser } from "./file-parser";
 import { Config, ConfigType, ParserFunction } from "./types";
 import * as p from "path";
 
 const DEFAULT_PATH = "./.env.yml";
 const DEFAULT_ENCODING: BufferEncoding = "utf8";
 const DEFAULT_TYPE: ConfigType = "YAML";
-
-const parsers: { [k: string]: ParserFunction } = {
-  YAML: parseYaml,
-  JSON: parseJSON,
-  TOML: parseToml,
-};
 
 function setValues(fileData: any) {
   Object.keys(fileData).forEach(function (key) {
@@ -34,8 +28,12 @@ export function tsEnv(config?: Config): void {
 
   try {
     const parsedPath = p.join(process.cwd(), path);
-    const file = parsers[type](parsedPath, encoding);
+
+    console.log('◉ ▶ tsEnv ▶ parsedPath:', parsedPath);
+    const parser = new FileParser(parsedPath, encoding);
+    const file = parser.parse(type);
     setValues(file);
+    
   } catch (error) {
     console.error(error);
   }
