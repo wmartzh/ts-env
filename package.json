@@ -3,7 +3,10 @@
   "version": "1.0.20-0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "repository": "https://github.com/wmartzh/ts-env",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmartzh/ts-env"
+  },
   "author": "Wilian Martinez <wmartzh@gmail.com>",
   "license": "Apache-2.0",
   "scripts": {
