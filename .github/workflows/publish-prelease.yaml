@@ -10,21 +10,18 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 'lts/iron'
-          registry-url: https://registry.npmjs.org/
-          scope: '@wmartzh'
-      - run: npm ci
-      - run: npm run build
-      - name: Authenticate with Npm package registry
-        run:
-          echo "//registry.npmjs.org:_authToken=${{ secrets.NPM_TOKEN }}" >
-          ~/.npmrc
-      - run: npm publish --access=public --tag=prerelease
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build
+      - name: Publish package on NPM 📦
+        run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
