@@ -16,7 +16,7 @@ jobs:
           node-version: '20.9.0'
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: npm publish --access=public --tag beta
+      - run: npm publish --access=public --tag=prerelase
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
