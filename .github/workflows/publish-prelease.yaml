@@ -17,10 +17,15 @@ jobs:
         with:
           node-version: 'lts/iron'
           registry-url: 'https://registry.npmjs.org'
+          scope: '@wmartzh'
       - name: Install dependencies and build 🔧
         run: npm ci && npm run build
+      - name: Set NPM_TOKEN 
+        run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish package on NPM 📦
-        run: npm publish --tag=prerelase
+        run: npm publish --access=public --tag=prerelase
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
