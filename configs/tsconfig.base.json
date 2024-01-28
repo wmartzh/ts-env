@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "checkJs": true,
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "rootDir": "../src",
+    "outDir": "../lib",
+
+  },
+  // "files": ["../src/**/*"],
+  "include": ["../src/**/*", "src/index.ts"],
+  "exclude": ["node_modules", "lib"]
+}

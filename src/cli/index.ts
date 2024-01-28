@@ -1,7 +1,8 @@
+// bin/ts-env
+
 import { tsEnv } from '../tsEnv';
 import { Config } from '../types';
 import { Command } from 'commander';
-
 
 export function init(): void {
   const program = new Command();
@@ -18,7 +19,6 @@ export function init(): void {
       '-e, --encoding <string>',
       'Encoding of the file to load environment variables from.',
       'utf8'
-      
     )
     .option(
       '-t, --type <string>',
@@ -30,14 +30,11 @@ export function init(): void {
 
   const opts = program.opts();
 
-
   const config: Config = {
     path: opts.path ?? undefined,
     encoding: opts.encoding ?? undefined,
     type: opts.type ?? undefined,
   };
- 
+
   tsEnv(config);
 }
-
-
