@@ -4,6 +4,7 @@ export interface Config {
   path?: string;
   encoding?: BufferEncoding;
   type?: ConfigType;
+  writeTypes?: boolean;
 }
 
 export type ParserFunction = (

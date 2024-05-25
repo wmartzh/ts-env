@@ -28,11 +28,13 @@ export function tsEnv(config?: Config): void {
 
   try {
     const parsedPath = p.join(process.cwd(), path);
-
-    console.log('◉ ▶ tsEnv ▶ parsedPath:', parsedPath);
     const parser = new FileParser(parsedPath, encoding);
     const file = parser.parse(type);
     setValues(file);
+    
+    if (config?.writeTypes) {
+      parser.writeTypes(Object.keys(file));
+    }
     
   } catch (error) {
     console.error(error);

@@ -4,6 +4,8 @@ import * as toml from 'toml';
 import * as p from 'path';
 import { ConfigType } from './types';
 
+const DEFAULT_TYPE_PATH = '/lib/types.d.ts';
+
 /* The `FileParser` class is a TypeScript class that can parse YAML, JSON, and TOML files and return
 their contents as objects. */
 export class FileParser {
@@ -60,17 +62,24 @@ export class FileParser {
    * @param {string[]} keys - The `keys` parameter is an array of strings. It represents the keys that
    * will be used to define the types in the generated TypeScript file.
    */
-  private writeTypes(keys: string[]) {
+  public writeTypes(keys: string[]) {
+    const types = keys.map((k) => `"${k}"`).join(' | ');
+
     const file = `
-    export type ENV = Record<${keys.map((k) => `"${k}"`).join(' | ')}, string>;
+    export type ENV = Record< ${types}, string>;
     declare global {
       namespace NodeJS {
         interface ProcessEnv extends ENV {}
       }
     }
     `;
-    fs.writeFileSync(p.join(process.cwd(), '/dist/types.d.ts'), file, {
-      flag: 'a',
+
+    if (fs.existsSync(p.join(process.cwd(), DEFAULT_TYPE_PATH))) {
+      fs.unlinkSync(p.join(process.cwd(), DEFAULT_TYPE_PATH));
+    }
+
+    fs.writeFileSync(p.join(process.cwd(), DEFAULT_TYPE_PATH), file, {
+      flag: 'a+',
     });
   }
 
@@ -78,13 +87,7 @@ export class FileParser {
   `FileParser` class. It takes a `type` parameter of type `ConfigType`, which is an enum
   representing the type of file to parse (e.g., YAML, JSON, TOML). */
   public parse(type: ConfigType): Record<string, string> {
-    console.log('◉ ▶ FileParser ▶ parse ▶ type:', this.path);
     const file = this[`parse${type}`]();
-    const keys = Object.keys(file);
-    if (keys.length) {
-      this.writeTypes(keys);
-    }
-
     return file;
   }
 }

@@ -24,6 +24,10 @@ export function init(): void {
       '-t, --type <string>',
       'Type of the file to load environment variables from. Valid options are JSON, YAML, and TOML.',
       'YAML'
+    )
+    .option(
+      '-w, --write-types <boolean>',
+      'Write TypeScript types for the environment variables.'
     );
 
   program.parse(process.argv);
@@ -34,7 +38,10 @@ export function init(): void {
     path: opts.path ?? undefined,
     encoding: opts.encoding ?? undefined,
     type: opts.type ?? undefined,
+    writeTypes: opts.writeTypes ?? undefined,
   };
 
   tsEnv(config);
 }
+
+
