@@ -1,5 +1,6 @@
 # ts-env
-[logo](https://github.com/wmartzh/ts-env/docs/images/ts-env.png)
+
+![TS](https://github.com/wmartzh/ts-env/assets/26823527/26ee1543-46fa-43f0-a844-0e27ac1c476a)
 
 [![npm version](https://badge.fury.io/js/%40wmartzh%2Fts-env.svg)](https://badge.fury.io/js/%40wmartzh%2Fts-env)
 
