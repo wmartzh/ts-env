@@ -4,7 +4,7 @@ import * as toml from 'toml';
 import * as p from 'path';
 import { ConfigType } from './types';
 
-const DEFAULT_TYPE_PATH = '/lib/types.d.ts';
+const DEFAULT_TYPE_PATH = './lib/types.d.ts';
 
 /* The `FileParser` class is a TypeScript class that can parse YAML, JSON, and TOML files and return
 their contents as objects. */

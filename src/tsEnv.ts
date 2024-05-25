@@ -13,6 +13,7 @@ function setValues(fileData: any) {
 }
 
 /**
+ * TODO: Validate that files are valid YAML, JSON, or TOML files.
  * The `main` function takes a `config` object as input, sets default values for `path`, `encoding`,
  * and `type`, and then attempts to parse a file based on the specified `type` and `path`, and sets the
  * values of the parsed file.
