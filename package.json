@@ -27,9 +27,7 @@
         "default": "./lib/cjs/index.js"
       }
     },
-    "./lib": "./lib",
-    "./lib/cjs/cli": "./lib/cjs/cli/index.js",
-    "./lib/esm/cli": "./lib/esm/cli/index.mjs"
+    "./cli":"./lib/cjs/main.js"
   },
   "author": "Wilian Martinez <wmartzh@gmail.com>",
   "license": "Apache-2.0",

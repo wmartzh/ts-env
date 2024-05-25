@@ -43,5 +43,3 @@ export function init(): void {
 
   tsEnv(config);
 }
-
-
