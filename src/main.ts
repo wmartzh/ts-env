@@ -3,3 +3,5 @@
 import { init } from './cli';
 
 init();
+
+export default init;
