@@ -73,7 +73,7 @@
     ]
   },
   "bin": {
-    "ts-env": "./lib/cjs/"
+    "@wmartzh/ts-env": "./lib/cjs/main.js"
   },
   "engines": {
     "node": ">=16.x"

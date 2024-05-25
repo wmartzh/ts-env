@@ -1,5 +1,3 @@
-// bin/ts-env
-
 import { tsEnv } from '../tsEnv';
 import { Config } from '../types';
 import { Command } from 'commander';
