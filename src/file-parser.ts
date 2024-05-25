@@ -4,7 +4,7 @@ import * as toml from 'toml';
 import * as p from 'path';
 import { ConfigType } from './types';
 
-const DEFAULT_TYPE_PATH = './lib/types.d.ts';
+const DEFAULT_TYPE_PATH = './types.d.ts';
 
 /* The `FileParser` class is a TypeScript class that can parse YAML, JSON, and TOML files and return
 their contents as objects. */
@@ -63,6 +63,7 @@ export class FileParser {
    * will be used to define the types in the generated TypeScript file.
    */
   public writeTypes(keys: string[]) {
+    const path = p.join(__dirname, DEFAULT_TYPE_PATH);
     const types = keys.map((k) => `"${k}"`).join(' | ');
 
     const file = `
@@ -74,11 +75,11 @@ export class FileParser {
     }
     `;
 
-    if (fs.existsSync(p.join(process.cwd(), DEFAULT_TYPE_PATH))) {
-      fs.unlinkSync(p.join(process.cwd(), DEFAULT_TYPE_PATH));
+    if (fs.existsSync(path)) {
+      fs.unlinkSync(path);
     }
 
-    fs.writeFileSync(p.join(process.cwd(), DEFAULT_TYPE_PATH), file, {
+    fs.writeFileSync(path, file, {
       flag: 'a+',
     });
   }
