@@ -1,2 +1,2 @@
-export * from './tsEnv';
+export * from './ts-env';
 export * from './types';

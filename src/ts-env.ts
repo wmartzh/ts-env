@@ -12,13 +12,12 @@ function setValues(fileData: any) {
   });
 }
 
+
 /**
- * TODO: Validate that files are valid YAML, JSON, or TOML files.
- * The `main` function takes a `config` object as input, sets default values for `path`, `encoding`,
- * and `type`, and then attempts to parse a file based on the specified `type` and `path`, and sets the
- * values of the parsed file.
- * @param {Config} config - The `config` parameter is an object that contains the configuration options
- * for the main function. It has the following properties:
+ * The `tsEnv` function in TypeScript parses a file based on the provided configuration and sets values
+ * accordingly, with an option to write types if specified.
+ * @param {Config} [config] - The `config` parameter is an optional object that can contain the
+ * following properties:
  */
 export function tsEnv(config?: Config): void {
   const {

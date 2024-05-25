@@ -1,4 +1,4 @@
-import { tsEnv } from '../tsEnv';
+import { tsEnv } from '../ts-env';
 import { Config } from '../types';
 import { Command } from 'commander';
 
