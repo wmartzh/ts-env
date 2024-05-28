@@ -5,7 +5,7 @@
 [![npm version](https://badge.fury.io/js/%40wmartzh%2Fts-env.svg)](https://badge.fury.io/js/%40wmartzh%2Fts-env)
 
 
-A typescript enviroment file management tool
+A typescript environment file management tool
 
 
 # Motivation 
@@ -78,7 +78,8 @@ const config: Config = {
 - [x] Support .env file
 - [x] Support .env.yaml file
 - [x] Support .env.json file
-- [x] Export types 
-- [ ] Support multi environment 
+- [x] Export types
+- [ ] Fix Release pipelines
+- [ ] Support multi-environment 
 - [ ] Check valid format files
 - [ ] Support pre-load script
