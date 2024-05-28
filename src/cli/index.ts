@@ -9,9 +9,19 @@ export function init(): void {
     .name('ts-env')
     .description('A typescript enviroment file management tool')
     .option(
+      '--prefix <string>',
+      'Prefix for the environment file to load environment variables from.',
+      '.env'
+    )
+    .option(
+      '-env, --environment <string>',
+      'Environment to load environment variables from.',
+      'local'
+    )
+    .option(
       '-p, --path <string>',
       'Path to the file to load environment variables from.',
-      './.env.yml'
+      './'
     )
     .option(
       '-e, --encoding <string>',
@@ -21,23 +31,32 @@ export function init(): void {
     .option(
       '-t, --type <string>',
       'Type of the file to load environment variables from. Valid options are JSON, YAML, and TOML.',
-      'YAML'
+      'ENV'
     )
     .option(
-      '-w, --write-types <boolean>',
+      '-w, --write-types',
       'Write TypeScript types for the environment variables.'
+    )
+    .option(
+      '--no-multi-env ',
+      'Disable multi-environment file loading.'
     );
 
   program.parse(process.argv);
 
   const opts = program.opts();
 
+
   const config: Config = {
+    prefix: opts.prefix ?? '.env',
     path: opts.path ?? undefined,
+    environment: opts.environment ?? undefined,
     encoding: opts.encoding ?? undefined,
     type: opts.type ?? undefined,
-    writeTypes: opts.writeTypes ?? undefined,
+    writeTypes: opts.writeType ?? undefined,
+    noMulti: opts.NoMultiEnv ?? undefined,
   };
-
   tsEnv(config);
+
+  console.log(process.env);
 }

@@ -1,10 +1,7 @@
 import * as yaml from 'js-yaml';
 import * as fs from 'fs';
 import * as toml from 'toml';
-import * as p from 'path';
 import { ConfigType } from './types';
-
-const DEFAULT_TYPE_PATH = './types.d.ts';
 
 /* The `FileParser` class is a TypeScript class that can parse YAML, JSON, and TOML files and return
 their contents as objects. */
@@ -14,6 +11,28 @@ export class FileParser {
     private readonly encoding: BufferEncoding = 'utf8'
   ) {}
 
+  /**
+   * The function `parseENV` reads and parses an environment file to create a key-value object of
+   * environment variables.
+   * @returns The `parseENV` method is returning an object of type `Record<string, string>`, which is
+   * essentially an object with string keys and string values. This object contains key-value pairs
+   * parsed from an environment file read by the method.
+   */
+  private parseENV(): Record<string, string> {
+    const file = fs.readFileSync(this.path, this.encoding);
+
+    const lines = file.split('\n');
+    const env: { [key: string]: string } = {};
+    for (const line of lines) {
+      const lineWithoutComments = line.trim().split('#')[0];
+      const [key, value] = lineWithoutComments.replace(/"/g, '').split('=');
+      if (key && value) {
+        env[key] = value.trim();
+      }
+    }
+
+    return env;
+  }
   /**
      * The function `parseYaml` reads a YAML file from the specified path and returns its contents as an.
      * @param {string} path - The `path` parameter is a string that represents the file path of the YAML
@@ -57,37 +76,13 @@ export class FileParser {
     return file ?? {};
   }
 
-  /**
-   * The function writes TypeScript type definitions for environment variables to a file.
-   * @param {string[]} keys - The `keys` parameter is an array of strings. It represents the keys that
-   * will be used to define the types in the generated TypeScript file.
-   */
-  public writeTypes(keys: string[]) {
-    const path = p.join(__dirname, DEFAULT_TYPE_PATH);
-    const types = keys.map((k) => `"${k}"`).join(' | ');
-
-    const file = `
-    export type ENV = Record< ${types}, string>;
-    declare global {
-      namespace NodeJS {
-        interface ProcessEnv extends ENV {}
-      }
-    }
-    `;
-
-    if (fs.existsSync(path)) {
-      fs.unlinkSync(path);
-    }
-
-    fs.writeFileSync(path, file, {
-      flag: 'a+',
-    });
-  }
-
   /* The `public parse(type: ConfigType): Record<string, string>` method is a public method of the
   `FileParser` class. It takes a `type` parameter of type `ConfigType`, which is an enum
   representing the type of file to parse (e.g., YAML, JSON, TOML). */
   public parse(type: ConfigType): Record<string, string> {
+    if (fs.existsSync(this.path) === false) {
+      return {};
+    }
     const file = this[`parse${type}`]();
     return file;
   }
