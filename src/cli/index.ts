@@ -37,10 +37,6 @@ export function init(): void {
       '-w, --write-types',
       'Write TypeScript types for the environment variables.'
     )
-    .option(
-      '--no-multi-env ',
-      'Disable multi-environment file loading.'
-    );
 
   program.parse(process.argv);
 
@@ -53,10 +49,11 @@ export function init(): void {
     environment: opts.environment ?? undefined,
     encoding: opts.encoding ?? undefined,
     type: opts.type ?? undefined,
-    writeTypes: opts.writeType ?? undefined,
-    noMulti: opts.NoMultiEnv ?? undefined,
+    writeTypes: opts.writeTypes ?? undefined,
   };
-  tsEnv(config);
+  tsEnv({
+    type: 'JSON',
+    writeTypes: true,
+  });
 
-  console.log(process.env);
 }
