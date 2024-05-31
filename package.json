@@ -1,6 +1,6 @@
 {
   "name": "@wmartzh/ts-env",
-  "version": "1.1.2-2",
+  "version": "1.1.2-3",
   "description": "A simple tool to manage environment variables in TypeScript projects.",
   "main": "./lib/cjs/index.js",
   "types": "./lib/cjs/types/index.d.ts",
