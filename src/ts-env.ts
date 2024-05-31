@@ -21,14 +21,16 @@ function pathParser(
   prefix?: string
 ): string {
   const pref = prefix ?? DEFAULT_PREFIX;
-
+  const ext = type.toLowerCase();
   if (!environment && type === 'ENV') {
-    return p.join(path, pref);
+    return pref !== '.env'
+      ? p.join(path, `${pref}.${ext}`)
+      : p.join(path, pref);
   }
 
   return environment
-    ? p.join(path, `${pref}.${environment}.${type.toLowerCase()}`)
-    : p.join(path, `${pref}.${type.toLowerCase()}`);
+    ? p.join(path, `${pref}.${environment}.${ext}`)
+    : p.join(path, `${pref}.${ext}`);
 }
 
 /**

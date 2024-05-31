@@ -36,8 +36,8 @@
     "clean": "del-cli ./lib",
     "create-pre-release": "npm version prerelease",
     "create-release": "npm version patch",
-    "pre-relase": "npm run clean && npm run test && npm run build",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "pre-release": "npm run test && npm run build",
+    "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -p ./configs/tsconfig.esm.json && move-file lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
     "test": "jest"
