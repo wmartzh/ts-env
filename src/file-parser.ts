@@ -80,10 +80,12 @@ export class FileParser {
   `FileParser` class. It takes a `type` parameter of type `ConfigType`, which is an enum
   representing the type of file to parse (e.g., YAML, JSON, TOML). */
   public parse(type: ConfigType): Record<string, string> {
-    if (fs.existsSync(this.path) === false) {
+    if (!fs.existsSync(this.path) ) {
+      console.log('File does not exist');
       return {};
     }
     const file = this[`parse${type}`]();
     return file;
+
   }
 }

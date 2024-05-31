@@ -1,17 +1,14 @@
 export type ConfigType = 'JSON' | 'YAML' | 'TOML' | 'ENV';
 
-export type EnvTypes = 'development' | 'local' | 'production' ;
-
-
+export type EnvTypes = 'development' | 'local' | 'production';
 
 export interface Config {
-  prefix: string;
+  prefix?: string;
   path?: string;
   encoding?: BufferEncoding;
   type?: ConfigType;
-  writeTypes?: boolean;
+  disableTypes?: boolean;
   environment?: EnvTypes;
-  noMulti?: boolean;
 }
 
 export type ParserFunction = (

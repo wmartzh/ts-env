@@ -2,7 +2,7 @@ import { tsEnv } from '../ts-env';
 import { Config } from '../types';
 import { Command } from 'commander';
 
-export function init(): void {
+export function main(): void {
   const program = new Command();
 
   program
@@ -16,7 +16,6 @@ export function init(): void {
     .option(
       '-env, --environment <string>',
       'Environment to load environment variables from.',
-      'local'
     )
     .option(
       '-p, --path <string>',
@@ -34,13 +33,9 @@ export function init(): void {
       'ENV'
     )
     .option(
-      '-w, --write-types',
+      '-dt, --disable-types',
       'Write TypeScript types for the environment variables.'
     )
-    .option(
-      '--no-multi-env ',
-      'Disable multi-environment file loading.'
-    );
 
   program.parse(process.argv);
 
@@ -48,15 +43,13 @@ export function init(): void {
 
 
   const config: Config = {
-    prefix: opts.prefix ?? '.env',
-    path: opts.path ?? undefined,
-    environment: opts.environment ?? undefined,
-    encoding: opts.encoding ?? undefined,
-    type: opts.type ?? undefined,
-    writeTypes: opts.writeType ?? undefined,
-    noMulti: opts.NoMultiEnv ?? undefined,
+    prefix: opts.prefix,
+    path: opts.path,
+    environment: opts.environment,
+    encoding: opts.encoding,
+    type: opts.type,
+    disableTypes: opts.disableTypes,
   };
   tsEnv(config);
 
-  console.log(process.env);
 }

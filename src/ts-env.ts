@@ -1,6 +1,5 @@
 import { FileParser } from './file-parser';
 import { Config, ConfigType, EnvTypes } from './types';
-import * as fs from 'fs';
 import * as p from 'path';
 import { writeTypes } from './utils/typing.utils';
 
@@ -8,7 +7,6 @@ const DEFAULT_PATH = './';
 const DEFAULT_PREFIX = '.env';
 const DEFAULT_ENCODING: BufferEncoding = 'utf8';
 const DEFAULT_TYPE: ConfigType = 'ENV';
-
 
 function setValues(fileData: any) {
   Object.keys(fileData).forEach(function (key) {
@@ -19,20 +17,20 @@ function setValues(fileData: any) {
 function pathParser(
   path: string,
   type: ConfigType,
-  environment: EnvTypes,
-  noMulti?: boolean,
+  environment?: EnvTypes,
   prefix?: string
 ): string {
   const pref = prefix ?? DEFAULT_PREFIX;
-  if (noMulti) {
-    return `${path}/${pref}.${type.toLowerCase()}`;
+  const ext = type.toLowerCase();
+  if (!environment && type === 'ENV') {
+    return pref !== '.env'
+      ? p.join(path, `${pref}.${ext}`)
+      : p.join(path, pref);
   }
 
-  if (type === 'ENV') {
-    return `${path}/.${type.toLowerCase()}.${environment}`;
-  }
-
-  return `${path}/${pref}.${environment}.${type.toLowerCase()}`;
+  return environment
+    ? p.join(path, `${pref}.${environment}.${ext}`)
+    : p.join(path, `${pref}.${ext}`);
 }
 
 /**
@@ -44,23 +42,24 @@ function pathParser(
 export function tsEnv(config?: Config): void {
   const {
     prefix = DEFAULT_PREFIX,
-    environment = 'local',
+    environment,
     path = DEFAULT_PATH,
     encoding = DEFAULT_ENCODING,
     type = DEFAULT_TYPE,
-    noMulti,
   } = config ?? {};
 
   try {
-    const filePath = pathParser(path, type, environment, noMulti, prefix);
+    const filePath = pathParser(path, type, environment, prefix);
+
     const parsedPath = p.join(process.cwd(), filePath);
+
     const parser = new FileParser(parsedPath, encoding);
 
     const file = parser.parse(type);
 
     setValues(file);
 
-    if (config?.writeTypes) {
+    if (!config?.disableTypes) {
       writeTypes(Object.keys(file));
     }
   } catch (error) {
