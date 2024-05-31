@@ -34,7 +34,7 @@ export function init(): void {
       'ENV'
     )
     .option(
-      '-w, --write-types',
+      '-dt, --disable-types',
       'Write TypeScript types for the environment variables.'
     )
 
@@ -44,16 +44,13 @@ export function init(): void {
 
 
   const config: Config = {
-    prefix: opts.prefix ?? '.env',
-    path: opts.path ?? undefined,
-    environment: opts.environment ?? undefined,
-    encoding: opts.encoding ?? undefined,
-    type: opts.type ?? undefined,
-    writeTypes: opts.writeTypes ?? undefined,
+    prefix: opts.prefix,
+    path: opts.path,
+    environment: opts.environment,
+    encoding: opts.encoding,
+    type: opts.type,
+    disableTypes: opts.disableTypes,
   };
-  tsEnv({
-    type: 'JSON',
-    writeTypes: true,
-  });
+  tsEnv(config);
 
 }

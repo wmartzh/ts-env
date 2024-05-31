@@ -2,17 +2,17 @@ import { tsEnv } from '../index';
 
 describe('Main Function', () => {
   it('Should load the environment variables from env file', () => {
-    tsEnv({ path: './src/test/', prefix: 'test', type: 'ENV' });
-    expect(process.env.person).toBeDefined();
+    tsEnv({ path: '/src/test', prefix: 'test', type: 'ENV' });
+    expect(process.env.DB_HOST).toBeDefined();
   });
   it('Should load the environment variables from yaml file', () => {
-    tsEnv({ path: './src/test/', prefix: 'test', type: 'YAML' });
+    tsEnv({ path: '/src/test', prefix: 'test', type: 'YAML' });
     expect(process.env.person).toBeDefined();
   });
 
   it('Should load the environment variables from json file', () => {
     tsEnv({
-      path: './src/test',
+      path: '/src/test',
       prefix: 'test',
       type: 'JSON',
     });
@@ -21,7 +21,7 @@ describe('Main Function', () => {
   });
 
   it('Should load the environment variables from toml file', () => {
-    tsEnv({ path: './src/test', prefix: 'test', type: 'TOML' });
+    tsEnv({ path: '/src/test', prefix: 'test', type: 'TOML' });
     expect(process.env.string).toBeDefined();
     expect(process.env.string).toBe('Hello, World!');
   });

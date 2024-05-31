@@ -27,7 +27,8 @@
         "default": "./lib/cjs/index.js"
       }
     },
-    "./cli": "./lib/cjs/main.js"
+    "./cli": "./lib/cjs/main.js",
+    "./env": "./lib/cjs/types/env.d.ts"
   },
   "author": "Wilian Martinez <wmartzh@gmail.com>",
   "license": "Apache-2.0",
