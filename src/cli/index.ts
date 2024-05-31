@@ -2,7 +2,7 @@ import { tsEnv } from '../ts-env';
 import { Config } from '../types';
 import { Command } from 'commander';
 
-export function init(): void {
+export function main(): void {
   const program = new Command();
 
   program

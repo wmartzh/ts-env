@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // bin/@wmartzh/ts-env
-import { init } from './cli';
+import { main } from './cli';
 
-init();
+main();
 
-export default init;
+export default main;
