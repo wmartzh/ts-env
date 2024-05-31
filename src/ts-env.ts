@@ -1,14 +1,12 @@
 import { FileParser } from './file-parser';
 import { Config, ConfigType, EnvTypes } from './types';
 import * as p from 'path';
-import * as childProcess from 'child_process';
 import { writeTypes } from './utils/typing.utils';
 
 const DEFAULT_PATH = './';
 const DEFAULT_PREFIX = '.env';
 const DEFAULT_ENCODING: BufferEncoding = 'utf8';
 const DEFAULT_TYPE: ConfigType = 'ENV';
-const DEFAULT_FILES = ['.env', 'env.yaml', 'env.yml', 'env.toml', 'env.json'];
 
 function setValues(fileData: any) {
   Object.keys(fileData).forEach(function (key) {
@@ -24,20 +22,13 @@ function pathParser(
 ): string {
   const pref = prefix ?? DEFAULT_PREFIX;
 
-  return environment
-    ? `${path}/${pref}.${environment}.${type.toLowerCase()}`
-    : `${path}/${pref}.${type.toLowerCase()}`;
-}
+  if (!environment && type === 'ENV') {
+    return p.join(path, pref);
+  }
 
-function findFile(
-  files: string[],
-  pref: string,
-  type: ConfigType,
-  environment?: EnvTypes
-): string | undefined {
-  return files.find((file) => {
-    return true;
-  });
+  return environment
+    ? p.join(path, `${pref}.${environment}.${type.toLowerCase()}`)
+    : p.join(path, `${pref}.${type.toLowerCase()}`);
 }
 
 /**

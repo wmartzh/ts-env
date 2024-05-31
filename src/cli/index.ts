@@ -16,7 +16,6 @@ export function init(): void {
     .option(
       '-env, --environment <string>',
       'Environment to load environment variables from.',
-      'local'
     )
     .option(
       '-p, --path <string>',
