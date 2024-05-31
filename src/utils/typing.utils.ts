@@ -13,12 +13,12 @@ export function writeTypes(keys: string[]): void {
   const types = keys.map((k) => `"${k}"`).join(' | ');
 
   const file = `
-    export type ENV = Record< ${types}, string>;
-    declare global {
-      namespace NodeJS {
-        interface ProcessEnv extends ENV {}
-      }
-    }
+export type ENV = Record< ${types}, string>;
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv extends ENV {}
+  }
+}
     `;
 
   if (fs.existsSync(path)) {
